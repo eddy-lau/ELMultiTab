@@ -11,7 +11,7 @@
 
 @implementation UIColor (Web)
 
-+ (UIColor *)colorWithHex:(UInt32)col {
++ (UIColor *)colorWithHexInteger:(UInt32)col {
     unsigned char r, g, b;
     b = col & 0xFF;
     g = (col >> 8) & 0xFF;

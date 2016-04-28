@@ -13,7 +13,7 @@
 
 + (UIColor *) facebookColor;
 + (UIColor *) colorFromWebTitle:(NSString *)title;
-+ (UIColor *)colorWithHex:(UInt32)col;
++ (UIColor *) colorWithHexInteger:(UInt32)col;
 
 /* 0.0 is darkest */
 - (UIColor *)colorByDarkeningColorBy:(CGFloat)darkness;

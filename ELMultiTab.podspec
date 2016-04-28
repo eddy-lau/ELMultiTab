@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = "ELMultiTab"
   s.version          = "0.1.0"
-  s.summary          = "A short description of ELMultiTab."
+  s.summary          = "A multi-tab user interface"
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,6 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
+A multi-tab user interface like a desktop web browser
                        DESC
 
   s.homepage         = "https://github.com/eddy-lau/ELMultiTab"
