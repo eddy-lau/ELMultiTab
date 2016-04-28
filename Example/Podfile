@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'ELMultiTab_Example', :exclusive => true do
+  pod 'ELMultiTab', :path => '../'
+end
+
+target 'ELMultiTab_Tests', :exclusive => true do
+  pod 'ELMultiTab', :path => '../'
+
+  
+end
