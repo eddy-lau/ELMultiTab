@@ -20,21 +20,25 @@ Pod::Spec.new do |s|
   s.description      = <<-DESC
                        DESC
 
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/ELMultiTab"
+  s.homepage         = "https://github.com/eddy-lau/ELMultiTab"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Eddie Lau" => "eddie@touchutility.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/ELMultiTab.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/eddy-lau/ELMultiTab.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '7.0'
+  s.requires_arc = false
 
   s.source_files = 'ELMultiTab/Classes/**/*'
   s.resource_bundles = {
     'ELMultiTab' => ['ELMultiTab/Assets/*.png']
   }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
+  s.public_header_files = 'ELMultiTab/Classes/ELMultiTab.h', 'ELMultiTab/Classes/ELMultiTabViewController.h', 'ELMultiTab/Classes/ELTabOrientation.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'MKNumberBadgeView', '~> 0.0'
+  s.dependency 'RegexKitLite-NoWarning', '~> 1.1'
+
 end
