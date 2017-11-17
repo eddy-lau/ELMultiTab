@@ -28,10 +28,8 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
-		
-		
-		tabAreaHeight        = (IS_IPAD ? 40 : 30);
-		tabTopSpace          = (IS_IPAD ? 10 : 5);
+        
+        [self updateTabAreaHeight];
 		tabWidth             = (IS_IPAD ? 150.0 : 120);
 		tabOverlapWidth      = 30.0;
 		
@@ -497,6 +495,7 @@
     if (tabOrientation != value) {
         tabOrientation = value;
         
+        [self updateTabAreaHeight];
         [self setNeedsDisplay];
         [self updateUI:NO oldState:state];
     }
@@ -507,6 +506,21 @@
 }
 
 #pragma mark Private methods
+
+- (void) updateTabAreaHeight {
+    
+    CGFloat bottomPadding = 0;
+    if (@available(iOS 11.0, *)) {
+        if (self.tabOrientation == TAB_ORIENATION_BOTTOM) {
+            UIWindow *window = UIApplication.sharedApplication.keyWindow;
+            bottomPadding = window.safeAreaInsets.bottom;
+        }
+    }
+    
+    tabAreaHeight        = (IS_IPAD ? 40 : 30) + bottomPadding;
+    tabTopSpace          = (IS_IPAD ? 10 : 5) + bottomPadding;
+    
+}
 
 - (CGRect) tabFrame {
 

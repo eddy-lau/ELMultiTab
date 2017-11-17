@@ -1,0 +1,22 @@
+PODS:
+  - ELMultiTab (0.1.1):
+    - MKNumberBadgeView (~> 0.0)
+    - RegexKitLite-NoWarning (~> 1.1)
+  - MKNumberBadgeView (0.0.1)
+  - RegexKitLite-NoWarning (1.1.0)
+
+DEPENDENCIES:
+  - ELMultiTab (from `../`)
+
+EXTERNAL SOURCES:
+  ELMultiTab:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ELMultiTab: 53b89f0895050c7e70a15baf27b10987f9b585fc
+  MKNumberBadgeView: 4007883b46f7babcf8bca339ecddff187e0cbb1f
+  RegexKitLite-NoWarning: 365d208f8187997e33d9de8baeddfc00728596d8
+
+PODFILE CHECKSUM: adbb4418d070d37490c233f6ba12d6f8c16a3216
+
+COCOAPODS: 1.2.0
