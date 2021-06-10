@@ -14,6 +14,7 @@
 #import "TabContentViewDelegate.h"
 #import "TabContentViewController.h"
 #import "MultiTabView.h"
+#import "MaterialTabs.h"
 
 @interface ELMultiTabViewController () <TabContentViewDelegate,UIScrollViewDelegate> {
     

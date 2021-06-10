@@ -12,8 +12,6 @@
 
 @implementation MultiTabView
 
-@synthesize adBannerView;
-
 - (CGRect) customAdFrame {
     
     CGRect bounds = self.bounds;
@@ -42,40 +40,8 @@
 }
 
 - (CGRect) adBannerViewFrame {
-    
     CGRect bounds = self.bounds;
-    
-    if (adBannerView != nil) {
-        
-        /*
-        if (bounds.size.width > bounds.size.height) {
-            adBannerView.currentContentSizeIdentifier = (&ADBannerContentSizeIdentifierLandscape != nil) ? ADBannerContentSizeIdentifierLandscape : ADBannerContentSizeIdentifier480x32;
-        } else {
-            adBannerView.currentContentSizeIdentifier = (&ADBannerContentSizeIdentifierPortrait != nil) ? ADBannerContentSizeIdentifierPortrait : ADBannerContentSizeIdentifier320x50;         
-        }
-         */
-        
-
-        if (iAdLoaded) {
-            
-            CGFloat h = adBannerView.bounds.size.height;
-            CGFloat x = bounds.origin.x;
-            CGFloat y = CGRectGetMaxY(bounds)-h;
-            CGFloat w = bounds.size.width;    
-            
-            return CGRectMake(x,y,w,h);
-        } else {
-            
-            CGFloat h = adBannerView.bounds.size.height;
-            CGFloat x = bounds.origin.x;
-            CGFloat y = CGRectGetMaxY(bounds);
-            CGFloat w = bounds.size.width;    
-            
-            return CGRectMake(x,y,w,h);
-        }
-    } else {
-        return CGRectZero;
-    }
+    return CGRectZero;
 }
 
 - (CGFloat) tabScrollViewWidth {
@@ -98,16 +64,10 @@
 
 - (void) layoutSubviews {
     
-    adBannerView.frame = [self adBannerViewFrame];
     CGFloat adHeight = [self customAdFrame].size.height;
     
-    if (iAdLoaded) {
-        adHeight = adBannerView.bounds.size.height;
-    }
-    
     customAdBanner.frame = [self customAdFrame];
-    
-    
+        
 	CGRect allTabsFrame = CGRectZero;
 	TabContentView *tabContentView = nil;
     NSInteger tabContentMaxZOrder = 0;
@@ -167,42 +127,6 @@
     
 }
 
-#pragma mark ADBannerViewDelegate
-
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
-    NSLog (@"bannerViewDidLoadAd");
-    iAdLoaded = YES;
-    
-    [self setNeedsLayout];
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.3];
-    [self layoutIfNeeded];    
-    [UIView commitAnimations];
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-
-    NSLog (@"bannerView:didFailToReceiveAdWithError");
-    iAdLoaded = NO;
-    
-    [self setNeedsLayout];
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.3];
-    [self layoutIfNeeded];    
-    [UIView commitAnimations];    
-}
-
-- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
-    NSLog (@"bannerViewActionShouldBegin");
-    return YES;
-}
-
-
--(void)bannerViewActionDidFinish:(ADBannerView *)banner {
-    
-}
 
 static BOOL isIOS4(void) {
     
@@ -255,38 +179,6 @@ static BOOL isIOS4(void) {
 - (void) setHasAd:(BOOL)value {
     if (hasAd != value) {
         hasAd = value;
-        
-        if (hasAd) {
-            
-            if (isIOS4()) {
-                
-                adBannerView = [[ADBannerView alloc] initWithFrame:[self adBannerViewFrame]];
-                adBannerView.delegate = self;
-                
-                adBannerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin;
-                
-                // Since we support all orientations, support portrait and landscape content sizes.
-                // If you only supported landscape or portrait, you could remove the other from this set
-                
-                /*
-                adBannerView.requiredContentSizeIdentifiers = (&ADBannerContentSizeIdentifierPortrait != nil) ?
-                [NSSet setWithObjects:ADBannerContentSizeIdentifierPortrait, ADBannerContentSizeIdentifierLandscape, nil] : 
-                [NSSet setWithObjects:ADBannerContentSizeIdentifier320x50, ADBannerContentSizeIdentifier480x32, nil];
-                */
-                 
-                [self addSubview:adBannerView];
-                
-            }
-            
-        } else {
-            
-            adBannerView.delegate = nil;
-            [adBannerView removeFromSuperview];
-            [adBannerView release];
-            adBannerView = nil;
-            
-        }
-        
         [self setNeedsLayout];
     }
 }
