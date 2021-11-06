@@ -67,7 +67,7 @@
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
     
-    CGRect appFrame         = [UIScreen mainScreen].applicationFrame;
+    CGRect appFrame         = [UIScreen mainScreen].bounds;
     UIView *view  = [[MultiTabView alloc] initWithFrame:appFrame];
     view.backgroundColor    = [UIColor colorWithHexInteger:0x79ac51];
     view.autoresizingMask  |= UIViewAutoresizingFlexibleHeight;

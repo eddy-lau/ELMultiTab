@@ -265,7 +265,16 @@
 		[self addRoundedPathInRect:rect inContext:context];
 		
 		// Fill the background
-		CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
+        if (@available(iOS 13.0, *)) {
+            if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+                UIColor *fillColor = [UIColor systemBackgroundColor];
+                CGContextSetFillColorWithColor(context, fillColor.CGColor);
+            } else {
+                CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
+            }
+        } else {
+            CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
+        }
 		CGContextFillPath(context);
 		
 	} else if (state == TAB_STATE_NEW) {
@@ -554,6 +563,18 @@
     }
 }
 
+- (UIColor *) activeTitleColor {
+    if (@available(iOS 13.0, *)) {
+        if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+            return [UIColor darkGrayColor];
+        } else {
+            return [UIColor lightGrayColor];
+        }
+    } else {
+        return [UIColor lightGrayColor];
+    }
+}
+
 - (void) updateUI:(BOOL)animated oldState:(TabState)oldState {
 	
 	/*
@@ -596,7 +617,7 @@
 	if (state == TAB_STATE_ACTIVE) {
 				
 		titleLabel.font            = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16.0];
-		titleLabel.textColor       = [UIColor lightGrayColor];
+        titleLabel.textColor       = [self activeTitleColor];
 		titleLabel.shadowColor     = [UIColor clearColor];
 		titleLabel.shadowOffset    = CGSizeMake(0,0);
         rotatingCircle.color       = titleLabel.textColor;
