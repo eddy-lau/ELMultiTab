@@ -39,6 +39,7 @@
 @property (nonatomic, assign) id<MultiTabViewControllerDataSource> dataSource;
 @property (nonatomic, assign) id<MultiTabViewControllerDelegate> delegate;
 @property (nonatomic, copy) NSArray *tabColors;
+@property (nonatomic, retain) UIColor *darkModeActiveTabTextColor;
 @property (nonatomic) BOOL fullScreen;
 @property (nonatomic) ELTabOrientation tabOrientation;
 

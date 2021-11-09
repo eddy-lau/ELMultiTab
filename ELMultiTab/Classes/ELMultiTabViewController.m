@@ -50,6 +50,8 @@
 						 [UIColor colorWithRed:230.0/255.0 green:133.0/255.0 blue:186.0/255.0 alpha:1.0],
 						 [UIColor colorWithRed:240.0/255.0 green:34.0/255.0 blue:160.0/255.0 alpha:1.0],
 						  nil];
+        
+        self.darkModeActiveTabTextColor = [UIColor darkGrayColor];
 		
     }
     return self;
@@ -105,6 +107,7 @@
                 TabState tabState = i==0? TAB_STATE_ACTIVE : TAB_STATE_INACTIVE;
                 TabContentViewController *tabContentViewController = [[[TabContentViewController alloc] initWithTabState:tabState withParentController:self] autorelease];
                 tabContentViewController.contentViewController = viewController;
+                tabContentViewController.tabContentView.tabView.darkModeActiveTextColor = self.darkModeActiveTabTextColor;
                 tabContentViewController.tabContentView.tabView.inactiveTabColor = [self nextTabColor];
                 tabContentViewController.tabContentView.tabOrientation = tabOrientation;
                 tabContentViewController.tabIndex = i;

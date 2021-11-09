@@ -31,7 +31,7 @@
 - (void)loadView {
 	
 	
-    CGRect           appFrame       = [UIScreen mainScreen].applicationFrame;	
+    CGRect           appFrame       = [UIScreen mainScreen].bounds;	
 	TabContentView  *v              = [[TabContentView alloc] initWithFrame:CGRectMake(0.0, 0.0, appFrame.size.width, appFrame.size.height)];
 	v.tabView.state                 = initialState;
 	v.autoresizingMask             |= UIViewAutoresizingFlexibleWidth;

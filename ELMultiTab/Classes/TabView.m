@@ -33,6 +33,7 @@
 		tabWidth             = (IS_IPAD ? 150.0 : 120);
 		tabOverlapWidth      = 30.0;
 		
+        self.darkModeActiveTextColor = [UIColor darkGrayColor];
 		activeTextColor      = [UIColor darkGrayColor];
 		inactiveTabColor     = [[UIColor colorWithRed:114.0/255.0 green: 132.0/255.0 blue:211.0/255.0 alpha:1.0] retain];
 		
@@ -334,6 +335,7 @@
 	[inactiveTabColor release];
 	[deleteBadge release];
 	[titleLabel release];
+    self.darkModeActiveTextColor = nil;
     [super dealloc];
 }
 
@@ -566,7 +568,7 @@
 - (UIColor *) activeTitleColor {
     if (@available(iOS 13.0, *)) {
         if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
-            return [UIColor darkGrayColor];
+            return self.darkModeActiveTextColor;
         } else {
             return [UIColor lightGrayColor];
         }

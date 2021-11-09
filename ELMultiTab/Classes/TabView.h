@@ -61,6 +61,7 @@ typedef enum {
 @property (nonatomic,readonly)   DeleteBadge *deleteBadge;
 @property (nonatomic)            CGFloat      leftOffset;
 @property (nonatomic,retain)     UIColor     *inactiveTabColor;
+@property (nonatomic,retain)     UIColor     *darkModeActiveTextColor;
 
 @property (nonatomic,copy)       NSString    *title;
 @property (nonatomic)            NSInteger    numberBadgeValue;
